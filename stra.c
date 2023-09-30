@@ -31,7 +31,7 @@ char * Str_copy(char out[], const char src[])
 
 char * Str_concat(char out[], const char src[])
 {
-   size_t LenOut = Str_getLength(out), i = 0, j = 0;
+   size_t i = 0, j = 0;
    assert(src != NULL);
    assert(out != NULL);
 
