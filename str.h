@@ -13,6 +13,6 @@ int Str_compare(const char s1[], const char s2[]);
 
 int scan_match(const char haystack[], const char needle[], size_t start, size_t len_needle);
 
-char * Str_search(const char haystack[], const char needle[]);
+char * Str_search(char haystack[], const char needle[]);
 
 #endif
