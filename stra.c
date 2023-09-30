@@ -107,7 +107,7 @@ int Str_compare(const char s1[], const char s2[])
 /* helper function 
 find if all chars of the needle match starting at a given index in the haystack
 return 1 if true 0 if not*/
-int scan_match(char haystack[], const char needle[], size_t start, size_t len_needle) {
+int scan_match(const char haystack[], const char needle[], size_t start, size_t len_needle) {
    size_t k = 0;
    while(k < len_needle) {
       if(haystack[start + k] != needle[k]) { /* val of k is less than len*/
@@ -124,7 +124,7 @@ int scan_match(char haystack[], const char needle[], size_t start, size_t len_ne
 
 /* assume that haystack is big enough, also that there is only one NULL in haystack? 
 assume null-terminated haystack and needle */
-char * Str_search(char haystack[], const char needle[])
+char * Str_search(const char haystack[], const char needle[])
 {
    size_t HLen = Str_getLength(haystack), NLen = Str_getLength(needle), i = 0;
    int match;
