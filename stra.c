@@ -80,18 +80,18 @@ int Str_compare(const char s1[], const char s2[])
       }
 }
 
-int Str_scan_match(const char haystack[], const char needle[], size_t start, size_t len_needle) {
+int Str_scan_match(const char haystack[], const char needle[], size_t start) {
    size_t k = 0;
    assert(haystack != NULL);
    assert(needle != NULL);
 
-   while(k <= len_needle) {
+   while(needle[k] != '\0') {
       if(haystack[start + k] != needle[k]) { 
          break;
       }
       k++;
    }
-   if(k == len_needle) {        /* all chars matched*/
+   if(needle[k] == '\0') {        /* all chars matched */
       return 1;
    } else {
       return 0;
@@ -100,23 +100,24 @@ int Str_scan_match(const char haystack[], const char needle[], size_t start, siz
 
 char * Str_search(const char haystack[], const char needle[])
 {
-   size_t HLen = Str_getLength(haystack), NLen = Str_getLength(needle), i = 0;
+   size_t i = 0;
    int match;
    assert(haystack != NULL);
    assert(needle != NULL);
 
-   if(NLen == 0) {                        /* if needle is empty*/
-      return (char*) haystack;            /* */
+   if(needle[0] == '\0') {                   /* if needle is empty*/
+      return (char*) haystack;               /* cast */
    }
    else {
-      for(; i <= HLen; i++) {
-         if(haystack[i] == needle[i]) {   /* first match */
-            match = Str_scan_match(haystack, needle, i, NLen);    /* scan for needle match starting at i */
+      while(haystack[i] != '\0') {
+         if(haystack[i] == needle[i]) {    
+            match = Str_scan_match(haystack, needle, i);    /* scan for needle match starting at i */
             if(match == 1) {
-               return (char*) &haystack[i]; 
+               return (char*) &haystack[i];  /* cast */
             }
          }
-      }                                   /* if no successful match*/
+         i++;   
+      }                                      /* if no successful match*/
       return NULL;
    }
 }

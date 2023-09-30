@@ -1,4 +1,6 @@
-/* header file for the Str module*/
+/* header file for the Str module
+*  the functions pass array-type arguments, 
+*  but these are analogous to the functions that pass pointers */
 
 #ifndef str
 #define str
@@ -45,11 +47,10 @@ int Str_compare(const char s1[], const char s2[]);
  *                                                                                                                                                                     
  *   haystack: null-terminated char array, at least as big as needle     
  *   needle: null-terminated char array   
- *   start: given index to start matching at haystack[start]      
- *   len_needle: size of the needle, excluding the final NULL                                                                                                               
+ *   start: given index to start matching at haystack[start]                                                                                                                    
  *                                                                                                                                                                                        
  *   returns: (int) 0 if all needle chars match, 1 otherwise */
-int Str_scan_match(const char haystack[], const char needle[], size_t start, size_t len_needle);
+int Str_scan_match(const char haystack[], const char needle[], size_t start);
 
  /*  Search for the first match of a given string literal (the needle)
  *   in another string literal (the haystack)
