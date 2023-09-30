@@ -1,3 +1,5 @@
+/* Use arrays to create string handling functions*/
+
 #include <stdio.h>
 #include <stddef.h>
 #include <assert.h>  
@@ -127,8 +129,11 @@ int Str_compare(const char s1[], const char s2[])
  *                                                                                                                                                                                        
  *   returns: (int) 0 if all needle chars match, 1 otherwise */
 
-int scan_match(const char haystack[], const char needle[], size_t start, size_t len_needle) {
+int Str_scan_match(const char haystack[], const char needle[], size_t start, size_t len_needle) {
    size_t k = 0;
+   assert(haystack != NULL);
+   assert(needle != NULL);
+   
    while(k <= len_needle) {
       if(haystack[start + k] != needle[k]) { 
          break;
@@ -164,7 +169,7 @@ char * Str_search(const char haystack[], const char needle[])
    else {
       for(; i <= HLen; i++) {
          if(haystack[i] == needle[i]) {   /* first match */
-            match = scan_match(haystack, needle, i, NLen);    /* scan for needle match starting at i */
+            match = Str_scan_match(haystack, needle, i, NLen);    /* scan for needle match starting at i */
             if(match == 1) {
                return &haystack[i]; 
             }
