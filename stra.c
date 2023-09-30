@@ -130,22 +130,19 @@ assume null-terminated haystack and needle */
 char * Str_search(const char haystack[], const char needle[])
 {
    size_t HLen = Str_getLength(haystack), NLen = Str_getLength(needle), i = 0;
-   char out[1];  /* placeholder array for output  = same as a pointer to the first (and only) element */
    int match;
    assert(haystack != NULL);
    assert(needle != NULL);
 
    if(NLen == 1) {  /* if needle is empty*/
-      out[1] = haystack;
-      return &out[1];
+      return haystack;
    }
    else {
       for(; i < HLen; i++) {
          if(haystack[i] == needle[i]) { /* detect first match - find match*/
             match = scan_match(haystack, needle, i, NLen);
             if(match == 1) {
-               out[1] = haystack[i];
-               return &out[1];  /* returns adress of first char of match, also breaks out of loop*/
+               return &haystack[i];  /* returns adress of first char of match, also breaks out of loop*/
             }
          }
       } /* if no successful match*/
