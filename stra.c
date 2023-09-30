@@ -16,7 +16,7 @@ size_t Str_getLength(const char src[])
 
 char * Str_copy(char out[], const char src[])
 {
-   size_t LenOut = Str_getLength(out), i = 0;
+   size_t i = 0;
    assert(src != NULL); 
    assert(out != NULL);
 
@@ -24,32 +24,10 @@ char * Str_copy(char out[], const char src[])
       out[i] = src[i];
       i++;
    }
-/*  while(i <= LenOut) {           
-      out[i] = '\0';
-      i++;
-   }  */  
-   out[i]= '\0';    /*add the final null, assume that i don't have to change the rest*/
+   out[i]= '\0';                /* add final null, leave the rest unchanged*/
    return out;
 
 }
-/* Testing Str_copy()
-   Boundary Tests
-      Test at line 155 failed. -
-   Statement Tests
-      Test at line 178 failed.
-      Test at line 188 failed.
-      Test at line 198 failed.
-   Stress Tests
-      Test at line 217 failed.
-      Test at line 217 failed.
-      Test at line 217 failed.
-      Test at line 217 failed.
-      Test at line 217 failed.
-      Test at line 217 failed.
-      Test at line 217 failed.
-      Test at line 217 failed.
-      Test at line 217 failed.
-      Test at line 217 failed.*/
 
 char * Str_concat(char out[], const char src[])
 {
@@ -65,10 +43,7 @@ char * Str_concat(char out[], const char src[])
       j++;
       i++;
    }
-   while(i <= LenOut) {          /* add final null and fill any overhang BUG */   
-      out[i] = '\0';
-      i++;
-   }
+   out[i] = '\0';              /* add final null */   
    return out;
 
 }
