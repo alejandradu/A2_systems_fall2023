@@ -124,7 +124,7 @@ int scan_match(const char haystack[], const char needle[], size_t start, size_t 
 
 /* assume that haystack is big enough, also that there is only one NULL in haystack? 
 assume null-terminated haystack and needle */
-char * Str_search(const char haystack[], const char needle[])
+char * Str_search(char haystack[], const char needle[])
 {
    assert(haystack != NULL);
    assert(needle != NULL);
@@ -149,5 +149,4 @@ char * Str_search(const char haystack[], const char needle[])
    }
 }
 
-/* If needle is an empty string, haystack is returned; if needle occurs nowhere in haystack, NULL is returned; otherwise a pointer to the first character of the
-     first occurrence of needle is returned.*/
+/* WARNING: return discards 'const' qualifier from pointer target type*/
