@@ -20,6 +20,9 @@ QUESTION: When i call the function: Str_copy(destination, copy) can
 I pass arguments that have only been declared and not
 initialized? Ex char dest[]; 
 
+QUESTION: can't use sizeof, have to call other, but that requires const,
+do i do a temp?
+
 REMEMBER that we put the const to not modify the first src
 
 ASSUME that the out is big enough */
