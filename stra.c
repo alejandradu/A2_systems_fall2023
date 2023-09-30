@@ -26,9 +26,9 @@ ASSUME that the out is big enough */
 
 char * Str_copy(char out[], const char src[])
 {
+   size_t LenOut = Str_getLength(out), i = 0;    /*sizes will include + 1 of last null*/
    assert(src != NULL); 
    assert(out != NULL);
-   size_t LenOut = Str_getLength(out), i = 0;    /*sizes will include + 1 of last null*/
 
    while(src[i] != '\0') {      /* copy all chars from the source up until first null*/
       out[i] = src[i];
@@ -54,9 +54,9 @@ which we concat
 
 char * Str_concat(char out[], const char src[])
 {
+   size_t LenOut = Str_getLength(out), i = 0, j = 0;
    assert(src != NULL);
    assert(out != NULL);
-   size_t LenOut = Str_getLength(out), i = 0, j = 0;
 
    while(out[i] != '\0') {      /* Get index of first NULL in out */
       i++;
@@ -126,12 +126,10 @@ int scan_match(const char haystack[], const char needle[], size_t start, size_t 
 assume null-terminated haystack and needle */
 char * Str_search(char haystack[], const char needle[])
 {
+   size_t HLen = Str_getLength(haystack), NLen = Str_getLength(needle), i = 0;
+   int match;
    assert(haystack != NULL);
    assert(needle != NULL);
-   size_t HLen = Str_getLength(haystack);
-   size_t NLen = Str_getLength(needle);
-   size_t i = 0;
-   int match;
 
    if(NLen == 1) {  /* if needle is empty*/
       return haystack;
