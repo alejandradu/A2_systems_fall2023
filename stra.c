@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stddef.h>
-#include <assert.h>  // is this the assert macro?
+#include <assert.h>  
+#include "str.h"
 
 /* Description */
 // this argument does the assignment src[] = "input string" so LEN not necessary
