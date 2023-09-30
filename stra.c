@@ -24,13 +24,32 @@ char * Str_copy(char out[], const char src[])
       out[i] = src[i];
       i++;
    }
-   while(i <= LenOut) {          /* add final null and fill any overhang BUG */   
+/*  while(i <= LenOut) {           
       out[i] = '\0';
       i++;
-   }
+   }  */  
+   out[i]= '\0';    /*add the final null, assume that i don't have to change the rest*/
    return out;
 
 }
+/* Testing Str_copy()
+   Boundary Tests
+      Test at line 155 failed. -
+   Statement Tests
+      Test at line 178 failed.
+      Test at line 188 failed.
+      Test at line 198 failed.
+   Stress Tests
+      Test at line 217 failed.
+      Test at line 217 failed.
+      Test at line 217 failed.
+      Test at line 217 failed.
+      Test at line 217 failed.
+      Test at line 217 failed.
+      Test at line 217 failed.
+      Test at line 217 failed.
+      Test at line 217 failed.
+      Test at line 217 failed.*/
 
 char * Str_concat(char out[], const char src[])
 {
