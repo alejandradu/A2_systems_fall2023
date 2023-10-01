@@ -514,8 +514,7 @@ static void testSearch(void)
       pcResult2 = strstr(acHaystack, acNeedle);
       ASSURE(pcResult1 == pcResult2);
    }
-   printf("mine: %c and should: %c\n", pcResult1, pcResult2);
-   fflush(stdout);
+
    {
       const char acHaystack[] = "abcde";
       const char acNeedle[] = "cd";
