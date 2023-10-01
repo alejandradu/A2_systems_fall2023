@@ -115,14 +115,14 @@ char * Str_search(const char *haystack, const char *needle)
    curr = haystack;
 
    if(*needle == '\0') {                 /* if needle is empty*/
-      return (char*) curr;               /* cast */
+      return curr;               /* cast */
    }
    else {
       while(*curr != '\0') {
          if(*curr == *needle) {    
             match = Str_scan_match(curr, needle, dummy);    /* scan for needle match starting at i */
             if(match == 1) {
-               return (char*) curr;      /* cast */
+               return curr;      /* cast */
             }
          }
          curr++;   
