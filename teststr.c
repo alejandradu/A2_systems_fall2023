@@ -516,7 +516,7 @@ static void testSearch(void)
       printf("correct: %c\n", *pcResult2);
       ASSURE(pcResult1 == pcResult2);
    }
-/*
+
    {
       const char acHaystack[] = "abcde";
       const char acNeedle[] = "cd";
@@ -740,7 +740,7 @@ static void testSearch(void)
          pcResult2 = strstr(acSrc1, acSrc2);
          ASSURE(pcResult1 == pcResult2);
       }
-   } */
+   } 
 }
 
 /*--------------------------------------------------------------------*/
