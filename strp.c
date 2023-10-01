@@ -85,7 +85,7 @@ int Str_compare(const char *s1, const char *s2)
       }
 }
 
-int Str_scan_match(const char *curr_haystack, const char *needle) {
+int Str_scan_match(const char *curr_haystack, const char *needle, size_t dummy) {
    const char *curr_needle;
    assert(curr_haystack != NULL);
    assert(needle != NULL);
@@ -107,6 +107,7 @@ int Str_scan_match(const char *curr_haystack, const char *needle) {
 
 char * Str_search(const char *haystack, const char *needle)
 {  
+   size_t dummy;
    int match;
    const char *curr;
    assert(haystack != NULL);
@@ -119,7 +120,7 @@ char * Str_search(const char *haystack, const char *needle)
    else {
       while(*curr != '\0') {
          if(*curr == *needle) {    
-            match = Str_scan_match(curr, needle);    /* scan for needle match starting at i */
+            match = Str_scan_match(curr, needle, dummy);    /* scan for needle match starting at i */
             if(match == 1) {
                return (char*) curr;      /* cast */
             }
