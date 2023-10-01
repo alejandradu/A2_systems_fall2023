@@ -86,6 +86,7 @@ int Str_compare(const char *s1, const char *s2)
 }
 
 int Str_scan_match(const char *curr_haystack, const char *needle, size_t dummy) {
+   
    const char *curr_needle;
    const char *curr_temp_haystack;
    assert(curr_haystack != NULL);
@@ -93,7 +94,7 @@ int Str_scan_match(const char *curr_haystack, const char *needle, size_t dummy) 
    curr_needle = needle;
    curr_temp_haystack = curr_haystack;
 
-   while(*needle != '\0') {
+   while(*curr_needle != '\0') {
       if(*curr_temp_haystack != *curr_needle) { 
          break;
       }
