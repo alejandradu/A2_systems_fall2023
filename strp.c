@@ -76,7 +76,7 @@ int Str_compare(const char *s1, const char *s2)
          return -1;
       } else if(*c2 == '\0') {     /* s1 is longer*/
          return 1;
-      } else {                    /* the not-NULL chars are different  */
+      } else {                     /* the not-NULL chars are different  */
          if(*c1 > *c2) {
             return 1;
          } else {
@@ -85,45 +85,47 @@ int Str_compare(const char *s1, const char *s2)
       }
 }
 
-/* ------------- */
-int Str_scan_match(const char haystack[], const char needle[], size_t start) {
-   size_t k = 0;
-   assert(haystack != NULL);
+int Str_scan_match(const char *curr_haystack, const char *needle) {
+   const char *curr_needle;
+   assert(curr_haystack != NULL);
    assert(needle != NULL);
+   curr_needle = needle;
 
-   while(needle[k] != '\0') {
-      if(haystack[start + k] != needle[k]) { 
+   while(*needle != '\0') {
+      if(*curr_haystack != *curr_needle) { 
          break;
       }
-      k++;
+      curr_haystack++;
+      curr_needle++;
    }
-   if(needle[k] == '\0') {        /* all chars matched */
+   if(*curr_needle == '\0') {        /* all chars matched */
       return 1;
    } else {
       return 0;
    }
 }
 
-char * Str_search(const char haystack[], const char needle[])
+char * Str_search(const char *haystack, const char *needle)
 {  
-   size_t i = 0;
    int match;
+   const char *curr;
    assert(haystack != NULL);
    assert(needle != NULL);
-   
-   if(needle[0] == '\0') {                   /* if needle is empty*/
-      return (char*) haystack;               /* cast */
+   curr = haystack;
+
+   if(*needle == '\0') {                 /* if needle is empty*/
+      return (char*) curr;               /* cast */
    }
    else {
-      while(haystack[i] != '\0') {
-         if(haystack[i] == needle[0]) {    
-            match = Str_scan_match(haystack, needle, i);    /* scan for needle match starting at i */
+      while(*curr != '\0') {
+         if(*curr == *needle) {    
+            match = Str_scan_match(curr, needle);    /* scan for needle match starting at i */
             if(match == 1) {
-               return (char*) &haystack[i];  /* cast */
+               return (char*) curr;      /* cast */
             }
          }
-         i++;   
-      }                                      /* if no successful match*/
+         curr++;   
+      }                                   /* if no successful match*/
       return NULL;
    } 
 }
