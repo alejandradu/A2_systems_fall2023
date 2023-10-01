@@ -15,7 +15,7 @@ size_t Str_getLength(const char *src)
 
 char * Str_copy(char *out, const char *src)
 {
-   const char *curr;        /* do this bc i don't wanna change src? */
+   const char *curr;    
    assert(src != NULL); 
    assert(out != NULL);
    curr = src;
@@ -25,32 +25,31 @@ char * Str_copy(char *out, const char *src)
       curr++;
       out++;
    }
-   *out = '\0';              /* add final null */
+   *out = '\0';                    /* add final null */
  
-   return out - (curr - src);      /* curr - src is len out has moved */
+   return out - (curr - src);      /* curr - src is what out has moved */
 
 }
 
 char * Str_concat(char *out, const char *src)
 {
-   size_t LenOut = Str_getLength(out), i = 0, j = 0;
-   const char *curr = src;
+   size_t LenOut = Str_getLength(out);
+   const char *curr;
    assert(src != NULL);
    assert(out != NULL);
+   curr = src;
 
    while(*out != '\0') {      /* Get index of first NULL in out */
-      i++;
+      out++;
    }
-   while(curr[j] != '\0') {      /* copy src up until first NULL */
-      out[i] = curr[j];          
-      j++;
-      i++;
+   while(*curr != '\0') {      /* copy src up until first NULL */
+      *out = *curr;          
+      out++;
+      curr++;
    }
-   while(i <= LenOut) {          /* add final null and fill any overhang BUG */   
-      out[i] = '\0';
-      i++;
-   }
-   return out;
+   *out = '\0';                /* add final null */
+   
+   return out - (int) LenOut - (curr - src);   /* back to start of out */
 
 }
 
