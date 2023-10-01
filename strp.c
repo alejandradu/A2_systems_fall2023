@@ -48,38 +48,34 @@ char * Str_concat(char *out, const char *src)
       curr++;
    }
    *out = '\0';                /* add final null */
-   
+
    return out - (int) LenOut - (curr - src);   /* back to start of out */
 
 }
 
-
-
-
-/* ------------ */
-
-
-
-
-int Str_compare(const char s1[], const char s2[])
+int Str_compare(const *s1, const *s2)
 {
-   size_t i = 0;
-   char c1, c2;
+   char *c1;
+   char *c2;
    assert(s1 != NULL);
    assert(s2 != NULL);
+   c1 = s1;
+   c2 = s2;
 
-   while((c1 = s1[i]) == (c2 = s2[i])) {  
-      if(i == Str_getLength(s1) || i == Str_getLength(s2)) {    /* all chars are equal */
+   while(*c1 == *c2) {  
+      /* if all chars are equal */
+      if((c1 - s1) == Str_getLength(s1)|| (c2 - s2) == Str_getLength(s2)) { 
          return 0;
       } 
-      i++;
+      c1++;
+      c2++;
    }
-      if(c1 == '\0') {            /* s1 is shorter*/
+      if(*c1 == '\0') {            /* s1 is shorter*/
          return -1;
-      } else if(c2 == '\0') {     /* s1 is longer*/
+      } else if(*c2 == '\0') {     /* s1 is longer*/
          return 1;
       } else {                    /* the not-NULL chars are different  */
-         if(c1 > c2) {
+         if(*c1 > *c2) {
             return 1;
          } else {
             return -1;
@@ -87,6 +83,7 @@ int Str_compare(const char s1[], const char s2[])
       }
 }
 
+/* ------------- */
 int Str_scan_match(const char haystack[], const char needle[], size_t start) {
    size_t k = 0;
    assert(haystack != NULL);
