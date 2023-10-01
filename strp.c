@@ -55,8 +55,8 @@ char * Str_concat(char *out, const char *src)
 
 int Str_compare(const *s1, const *s2)
 {
-   char *c1;
-   char *c2;
+   const char *c1;
+   const char *c2;
    assert(s1 != NULL);
    assert(s2 != NULL);
    c1 = s1;
