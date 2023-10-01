@@ -53,7 +53,7 @@ char * Str_concat(char *out, const char *src)
 
 }
 
-int Str_compare(const *s1, const *s2)
+int Str_compare(const char *s1, const char *s2)
 {
    const char *c1;
    const char *c2;
