@@ -55,6 +55,8 @@ char * Str_concat(char *out, const char *src)
 
 int Str_compare(const char *s1, const char *s2)
 {
+   int int_l1 = (int) Str_getLength(s1);
+   int int_l2 = (int) Str_getLength(s2);
    const char *c1;
    const char *c2;
    assert(s1 != NULL);
@@ -64,7 +66,7 @@ int Str_compare(const char *s1, const char *s2)
 
    while(*c1 == *c2) {  
       /* if all chars are equal */
-      if((c1 - s1) == Str_getLength(s1)|| (c2 - s2) == Str_getLength(s2)) { 
+      if((c1 - s1) == int_l1 || (c2 - s2) == int_l2) { 
          return 0;
       } 
       c1++;
