@@ -81,7 +81,7 @@ int Str_scan_match(const char haystack[], const char needle[], size_t start) {
 
    while(needle[k] != '\0') {
       if(haystack[start + k] != needle[k]) { 
-         printf("scanning haystack at %d\n", (int) k);
+         /*printf("scanning haystack at %d\n", (int) k);*/
          break;
       }
       k++;
@@ -105,8 +105,8 @@ char * Str_search(const char haystack[], const char needle[])
    }
    else {
       while(haystack[i] != '\0') {
-         if(haystack[i] == needle[i]) {    
-            printf("found a match at %d\n", (int) i);
+         if(haystack[i] == needle[0]) {    
+            /*printf("found a match at %d\n", (int) i);*/
             match = Str_scan_match(haystack, needle, i);    /* scan for needle match starting at i */
             if(match == 1) {
                return (char*) &haystack[i];  /* cast */

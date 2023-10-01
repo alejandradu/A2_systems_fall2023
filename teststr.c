@@ -512,12 +512,10 @@ static void testSearch(void)
       const char acNeedle[] = "d";
       pcResult1 = Str_search(acHaystack, acNeedle);
       pcResult2 = strstr(acHaystack, acNeedle);
-      /*printf("test results");
-      printf("%c\n", *pcResult1);              
-      printf("%c\n", *pcResult2);*/
       ASSURE(pcResult1 == pcResult2);
    }
-
+   printf("mine: %c and should: %c\n", pcResult1, pcResult2);
+   fflush(stdout);
    {
       const char acHaystack[] = "abcde";
       const char acNeedle[] = "cd";
