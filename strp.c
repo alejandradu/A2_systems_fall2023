@@ -62,25 +62,6 @@ char * Str_concat(char *out, const char *src)
 
 
 
-char * Str_concat(char out[], const char src[])
-{
-   size_t i = 0, j = 0;
-   assert(src != NULL);
-   assert(out != NULL);
-
-   while(out[i] != '\0') {      /* Get index of first NULL in out */
-      i++;
-   }
-   while(src[j] != '\0') {      /* copy src up until first NULL */
-      out[i] = src[j];          
-      j++;
-      i++;
-   }
-   out[i] = '\0';              /* add final null */   
-   return out;
-
-}
-
 int Str_compare(const char s1[], const char s2[])
 {
    size_t i = 0;
