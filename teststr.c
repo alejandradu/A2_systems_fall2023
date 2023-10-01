@@ -312,7 +312,7 @@ static int sign(int i)
 /*--------------------------------------------------------------------*/
 
 /* Test the Str_compare() function. */
-/* HERE
+
 static void testCompare(void)
 {
    int iResult1;
@@ -469,7 +469,7 @@ static void testCompare(void)
 /*--------------------------------------------------------------------*/
 
 /* Test the Str_search() function. */
-/*
+
 static void testSearch(void)
 {
    const char *pcResult1;

@@ -13,7 +13,7 @@ size_t Str_getLength(const char *src)
    return (size_t)(end - src);
 }
 
-char * Str_copy(char *out, const char *src[])
+char * Str_copy(char *out, const char *src)
 {
    size_t LenOut = Str_getLength(out);
    char *curr = src;   /* pointer to src DON'T modify src value QUESTION or &?*/
