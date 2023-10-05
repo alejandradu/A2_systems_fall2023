@@ -37,7 +37,7 @@ static size_t replaceAndWrite(const char *pcLine,
    tail = Str_search(head, pcFrom);    /* match begins at tail */
 
    if(tail == NULL) {    /* pcFrom is NULL or no matches*/
-      printf(pcLine);
+      printf("%s", pcLine);
       return 0;
    }
 
