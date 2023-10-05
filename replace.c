@@ -40,8 +40,10 @@ static size_t replaceAndWrite(const char *pcLine,
    /* if not implicit */             
    start_match = pcLine;       /* assign at the beginnind of string */
    temp = Str_search(start_match, pcFrom);
-   printf("value of match char: %c\n", *temp);
-   while(temp != start_match && temp != NULL) { 
+   printf("address of match char: %p\n", temp);
+   printf("address of given line: %p\n", pcLine);
+   printf("address of start_match: %p\n", start_match);
+   while(temp != start_match && temp != NULL) {   /* like this they will never be the same!!! */
       /*printf("value of match char: %c\n", *temp);*/
       count++;
       start_match = temp + FromLen;      /* shift pointer to start a new search BUG + or minus 1??*/
