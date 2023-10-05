@@ -20,36 +20,48 @@
 static size_t replaceAndWrite(const char *pcLine,
                               const char *pcFrom, const char *pcTo)
 {
-   size_t ToLen, FromLen, count = 0;             /* could count many repetitions */
-   char *match, *replace, *move, *end_copy;   /* pointers to a pointer */
+   size_t ToLen, FromLen, LineLen, count = 0;             /* could count many repetitions */
+   const char *start_match;   /* pointers to a pointer */
+   char *temp;
 
    assert(pcLine != NULL);
    assert(pcFrom != NULL);
    assert(pcTo != NULL);
 
+   LineLen = Str_getLength(pcLine);
    ToLen = Str_getLength(pcTo);
    FromLen = Str_getLength(pcFrom);
 
-   if(*pcFrom == '\0') {
+   if(*pcFrom == '\0' || Str_search(pcLine, pcFrom) == pcLine) {    /* pcFrom is NULL or no matches*/
       printf(pcLine);
       return 0;
-   } else {                                 /* should work regardless of size?*/
-      replace = pcLine;
-      match = Str_search(replace, pcFrom);
-      while(match != replace) {             /* while there are still matches. when not will return the whole remaining word */
-         count++;
-         replace = match;
-         move = replace + FromLen;
-         *replace = pcTo;              /* might be terribly wrong - assign value to a POINTER. replace is first char of word to overwrite */
-         end_copy = pcTo + ToLen;      /* end_copy is terminating NULL of pcTo*/
-         *end_copy = move;
-         replace = move;                     /* update to continue maatching after the insertion */
-         
-         match = Str_search(replace, pcFrom);          /* get match of pcFrom */
-      }
-      printf(pcLine);
-      return count;
    }
+
+   /* if not implicit */             
+   start_match = pcLine;       /* assign at the beginnind of string */
+   while((temp = Str_search(start_match, pcFrom) != start_match)) { 
+      count++;
+      start_match = temp + FromLen;      /* shift pointer to start a new search BUG + or minus 1??*/
+   }
+
+   char result[LineLen + count*ToLen + 1];     /* output array */
+   start_match = pcLine;                       /* reset pointers */
+   temp = start_match;
+
+   while((temp = Str_search(start_match, pcFrom)) != start_match && temp != NULL) { /* check this syntax */
+      /* overwrite NULL at the start position of the match */
+      *temp = '\0';
+      /* concat preceding piece of pcLine before match to output */
+      Str_concat(result, start_match);
+      /* concat the word to replace*/
+      Str_concat(result, pcTo);
+      /* shift pointer to start a new search BUG + or minus 1??*/
+      start_match = temp + FromLen;     
+   }
+   
+   printf(result);
+   return count;
+
 }
 
 /*--------------------------------------------------------------------*/
