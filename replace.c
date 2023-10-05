@@ -48,6 +48,7 @@ static size_t replaceAndWrite(const char *pcLine,
       printf("scanning\n");
       count++;
       start_match = temp + FromLen;      /* shift pointer to start a new search BUG + or minus 1??*/
+      /* CHECK NOT TO GO OVER LENGTH - BUG*/
       *temp = Str_search(start_match, pcFrom);     /* new search */
    }
 
