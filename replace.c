@@ -20,56 +20,38 @@
 static size_t replaceAndWrite(const char *pcLine,
                               const char *pcFrom, const char *pcTo)
 {
-   size_t ToLen, FromLen, LineLen, count = 0;             /* could count many repetitions */
-   const char *start_match;   /* pointers to a pointer */
-   char *temp, *head;
+   size_t FromLen, LineLen, count = 0;             /* could count many repetitions */
+   const char *head;   /* pointers to a pointer */
+   char *tail;
 
    assert(pcLine != NULL);
    assert(pcFrom != NULL);
    assert(pcTo != NULL);
 
-   /*LineLen = Str_getLength(pcLine);
-   /*ToLen = Str_getLength(pcTo);*/
    FromLen = Str_getLength(pcFrom);
 
-   head = pcLine;       /* assign at the beginnind of string START_MATCH NOT ALLOWED TO CHANGE*/  
-   temp = Str_search(start_match, pcFrom);    /* correct assignment? */
-   printf("address of match char: %p\n", temp);
+   head = pcLine;       /* assign at the beginnind of string */  
 
-   if(temp == NULL) {    /* pcFrom is NULL or no matches*/
+   tail = Str_search(head, pcFrom);    /* match begins at tail */
+
+   if(tail == NULL) {    /* pcFrom is NULL or no matches*/
       printf(pcLine);
       return 0;
    }
 
-   printf("address of given line: %p\n", pcLine);
-   printf("address of start_match: %p\n", start_match);
-
-   while(temp != head) {   /* no matches when it returns the same input */
-      /*printf("value of match char: %c\n", *temp);*/
-      printf("scanning\n");
+   while (head!=tail) {   /* there is still a new match*/
       count++;
-      /* check it does not go over the length */
-      head = temp;      /* shift pointer to start a new search BUG + or minus 1??*/
-      /* CHECK NOT TO GO OVER LENGTH - BUG*/
-      temp = Str_search(head, pcFrom);     /* new search */
+      while (head!=tail) {  /* does not get to first match char - good */
+         printf(head);
+         head++;
+      }
+
+      printf(FromLen);   /* print the whole word */
+
+      head = head + FromLen;   /* move forward to keep on searching and ignore pcFrom */
+      tail = Str_search(head, pcFrom);    /* match begins at tail */
    }
 
-   char result[LineLen + count*ToLen + 1];     /* output array */
-
-   /*head = pcLine;                       /* reset pointers*/
-   /*/* OR A FOR LOOP WITH COUNTS */
-   /*while(temp != start_match && temp != NULL) { /* check this syntax */
-   /*   /* overwrite NULL at the start position of the match */
-   /*   *temp = '\0';
-   /*   /* concat preceding piece of pcLine before match to output */
-   /*   Str_concat(result, start_match);
-   /*   /* concat the word to replace*/
-   /*   Str_concat(result, pcTo);
-   /*   /* shift pointer to start a new search BUG + or minus 1??*/
-   /*   start_match = temp + FromLen;     
-   /*}
-   
-   printf(result);    /* write to stdout */
    return count;
 
 }
