@@ -29,7 +29,7 @@ static size_t replaceAndWrite(const char *pcLine,
    assert(pcTo != NULL);
 
    /*LineLen = Str_getLength(pcLine);
-   ToLen = Str_getLength(pcTo);*/
+   /*ToLen = Str_getLength(pcTo);*/
    FromLen = Str_getLength(pcFrom);
 
    if(*pcFrom == '\0' || Str_search(pcLine, pcFrom) == pcLine) {    /* pcFrom is NULL or no matches*/
@@ -40,9 +40,12 @@ static size_t replaceAndWrite(const char *pcLine,
    /* if not implicit */             
    start_match = pcLine;       /* assign at the beginnind of string */
    temp = Str_search(start_match, pcFrom);
+   /*printf("value of match char: %c\n", *temp);*/
    while(temp != start_match && temp != NULL) { 
+      /*printf("value of match char: %c\n", *temp);*/
       count++;
       start_match = temp + FromLen;      /* shift pointer to start a new search BUG + or minus 1??*/
+      temp = Str_search(start_match, pcFrom);     /* new search */
    }
 
    /*char result[LineLen + count*ToLen + 1];     /* output array */
