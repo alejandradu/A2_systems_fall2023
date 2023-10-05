@@ -46,7 +46,7 @@ static size_t replaceAndWrite(const char *pcLine,
          head++;
       }
 
-      printf(FromLen);   /* print the whole word */
+      printf(pcFrom);   /* print the whole word */
 
       head = head + FromLen;   /* move forward to keep on searching and ignore pcFrom */
       tail = Str_search(head, pcFrom);    /* match begins at tail */
