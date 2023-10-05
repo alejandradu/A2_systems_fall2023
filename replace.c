@@ -33,7 +33,7 @@ static size_t replaceAndWrite(const char *pcLine,
    FromLen = Str_getLength(pcFrom);
 
    start_match = pcLine;       /* assign at the beginnind of string */
-   *temp = Str_search(start_match, pcFrom);
+   *temp = Str_search(start_match, pcFrom);    /* correct assignment? */
 
    if(temp == NULL) {    /* pcFrom is NULL or no matches*/
       printf(pcLine);
@@ -48,7 +48,7 @@ static size_t replaceAndWrite(const char *pcLine,
       printf("scanning\n");
       count++;
       start_match = temp + FromLen;      /* shift pointer to start a new search BUG + or minus 1??*/
-      temp = Str_search(start_match, pcFrom);     /* new search */
+      *temp = Str_search(start_match, pcFrom);     /* new search */
    }
 
    /*char result[LineLen + count*ToLen + 1];     /* output array */
