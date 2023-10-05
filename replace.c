@@ -20,15 +20,17 @@
 static size_t replaceAndWrite(const char *pcLine,
                               const char *pcFrom, const char *pcTo)
 {
-   size_t FromLen, LineLen, count = 0;             /* could count many repetitions */
+   size_t FromLen, ToLen, count = 0;             /* could count many repetitions */
    const char *head;   /* pointers to a pointer */
    char *tail;
+   int i = 0;
 
    assert(pcLine != NULL);
    assert(pcFrom != NULL);
    assert(pcTo != NULL);
 
    FromLen = Str_getLength(pcFrom);
+   ToLen = Str_getLength(pcTo);
 
    head = pcLine;       /* assign at the beginnind of string */  
 
@@ -42,11 +44,11 @@ static size_t replaceAndWrite(const char *pcLine,
    while (head!=tail) {   /* there is still a new match*/
       count++;
       while (head!=tail) {  /* does not get to first match char - good */
-         printf(head);
+         fprintf("%c", *head);
          head++;
       }
-
-      printf(pcFrom);   /* print the whole word */
+      
+      fprintf("%s", pcTo);
 
       head = head + FromLen;   /* move forward to keep on searching and ignore pcFrom */
       tail = Str_search(head, pcFrom);    /* match begins at tail */
