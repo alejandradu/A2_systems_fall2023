@@ -50,7 +50,7 @@ int Str_compare(const char s1[], const char s2[]);
  *   start: given index to start matching at haystack[start]                                                                                                                    
  *                                                                                                                                                                                        
  *   returns: (int) 0 if all needle chars match, 1 otherwise */
-int Str_scan_match(const char haystack[], const char needle[], size_t start);
+static int Str_scan_match(const char haystack[], const char needle[], size_t start);
 
  /*  Search for the first match of a given string literal (the needle)
  *   in another string literal (the haystack)

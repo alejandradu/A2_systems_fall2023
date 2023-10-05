@@ -85,7 +85,7 @@ int Str_compare(const char *s1, const char *s2)
       }
 }
 
-int Str_scan_match(const char *curr_haystack, const char *needle, size_t dummy) {
+static int Str_scan_match(const char *curr_haystack, const char *needle, size_t dummy) {
    
    const char *curr_needle;
    const char *curr_temp_haystack;
