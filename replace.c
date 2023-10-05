@@ -40,7 +40,7 @@ static size_t replaceAndWrite(const char *pcLine,
    /* if not implicit */             
    start_match = pcLine;       /* assign at the beginnind of string */
    temp = Str_search(start_match, pcFrom);
-   /*printf("value of match char: %c\n", *temp);*/
+   printf("value of match char: %c\n", *temp);
    while(temp != start_match && temp != NULL) { 
       /*printf("value of match char: %c\n", *temp);*/
       count++;
