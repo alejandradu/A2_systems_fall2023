@@ -45,6 +45,7 @@ static size_t replaceAndWrite(const char *pcLine,
    printf("address of start_match: %p\n", start_match);
    while(temp != start_match && temp != NULL) {   /* like this they will never be the same!!! */
       /*printf("value of match char: %c\n", *temp);*/
+      printf("scanning\n");
       count++;
       start_match = temp + FromLen;      /* shift pointer to start a new search BUG + or minus 1??*/
       temp = Str_search(start_match, pcFrom);     /* new search */
