@@ -39,16 +39,16 @@ static size_t replaceAndWrite(const char *pcLine,
 
    /* if not implicit */             
    start_match = pcLine;       /* assign at the beginnind of string */
-   while((temp = Str_search(start_match, pcFrom) != start_match)) { 
+   temp = Str_search(start_match, pcFrom);
+   while(temp != start_match && temp != NULL) { 
       count++;
       start_match = temp + FromLen;      /* shift pointer to start a new search BUG + or minus 1??*/
    }
 
    char result[LineLen + count*ToLen + 1];     /* output array */
    start_match = pcLine;                       /* reset pointers */
-   temp = start_match;
 
-   while((temp = Str_search(start_match, pcFrom)) != start_match && temp != NULL) { /* check this syntax */
+   while(temp != start_match && temp != NULL) { /* check this syntax */
       /* overwrite NULL at the start position of the match */
       *temp = '\0';
       /* concat preceding piece of pcLine before match to output */
