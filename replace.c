@@ -45,21 +45,21 @@ static size_t replaceAndWrite(const char *pcLine,
       start_match = temp + FromLen;      /* shift pointer to start a new search BUG + or minus 1??*/
    }
 
-   char result[LineLen + count*ToLen + 1];     /* output array */
-   start_match = pcLine;                       /* reset pointers */
+   // char result[LineLen + count*ToLen + 1];     /* output array */
+   // start_match = pcLine;                       /* reset pointers */
 
-   while(temp != start_match && temp != NULL) { /* check this syntax */
-      /* overwrite NULL at the start position of the match */
-      *temp = '\0';
-      /* concat preceding piece of pcLine before match to output */
-      Str_concat(result, start_match);
-      /* concat the word to replace*/
-      Str_concat(result, pcTo);
-      /* shift pointer to start a new search BUG + or minus 1??*/
-      start_match = temp + FromLen;     
-   }
+   // while(temp != start_match && temp != NULL) { /* check this syntax */
+   //    /* overwrite NULL at the start position of the match */
+   //    *temp = '\0';
+   //    /* concat preceding piece of pcLine before match to output */
+   //    Str_concat(result, start_match);
+   //    /* concat the word to replace*/
+   //    Str_concat(result, pcTo);
+   //    /* shift pointer to start a new search BUG + or minus 1??*/
+   //    start_match = temp + FromLen;     
+   // }
    
-   printf(result);    /* write to stdout */
+   // printf(result);    /* write to stdout */
    return count;
 
 }
