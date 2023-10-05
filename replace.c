@@ -41,34 +41,33 @@ static size_t replaceAndWrite(const char *pcLine,
       return 0;
    }
 
-   /*printf("address of given line: %p\n", pcLine);
-   printf("address of start_match: %p\n", start_match);*/
+   printf("address of given line: %p\n", pcLine);
+   printf("address of start_match: %p\n", start_match);
 
-   /*while(temp != start_match) {   /* no matches when it returns the same input */
-   /*   /*printf("value of match char: %c\n", *temp);*/
-   /*   printf("scanning\n");
-   /*   count++;
-   /*   /* check it does not go over the length */
-   /*   start_match = temp;      /* shift pointer to start a new search BUG + or minus 1??*/
-   /*   /* CHECK NOT TO GO OVER LENGTH - BUG*/
-   /*   *temp = Str_search(start_match, pcFrom);     /* new search */
-   /*}
+   while(temp != start_match) {   /* no matches when it returns the same input */
+      /*printf("value of match char: %c\n", *temp);*/
+      printf("scanning\n");
+      count++;
+      /* check it does not go over the length */
+      start_match = temp;      /* shift pointer to start a new search BUG + or minus 1??*/
+      /* CHECK NOT TO GO OVER LENGTH - BUG*/
+      *temp = Str_search(start_match, pcFrom);     /* new search */
+   }
 
-   /*char result[LineLen + count*ToLen + 1];     /* output array */
-   /*start_match = pcLine;                       /* reset pointers */
-
-   /*while(temp != start_match && temp != NULL) { /* check this syntax */
-   /*   /* overwrite NULL at the start position of the match */
-   /*   *temp = '\0';
-   /*   /* concat preceding piece of pcLine before match to output */
-   /*   Str_concat(result, start_match);
-   /*   /* concat the word to replace*/
-   /*   Str_concat(result, pcTo);
-   /*   /* shift pointer to start a new search BUG + or minus 1??*/
-   /*   start_match = temp + FromLen;     
-   /*}
+   char result[LineLen + count*ToLen + 1];     /* output array */
+   start_match = pcLine;                       /* reset pointers*/
+   while(temp != start_match && temp != NULL) { /* check this syntax */
+      /* overwrite NULL at the start position of the match */
+      *temp = '\0';
+      /* concat preceding piece of pcLine before match to output */
+      Str_concat(result, start_match);
+      /* concat the word to replace*/
+      Str_concat(result, pcTo);
+      /* shift pointer to start a new search BUG + or minus 1??*/
+      start_match = temp + FromLen;     
+   }
    
-   /*printf(result);    /* write to stdout */
+   printf(result);    /* write to stdout */
    return count;
 
 }
