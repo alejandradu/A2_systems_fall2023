@@ -33,13 +33,16 @@ static size_t replaceAndWrite(const char *pcLine,
    FromLen = Str_getLength(pcFrom);
 
    start_match = pcLine;       /* assign at the beginnind of string */
-   temp = Str_search(start_match, pcFrom);
+   *temp = Str_search(start_match, pcFrom);
 
    if(temp == NULL) {    /* pcFrom is NULL or no matches*/
       printf(pcLine);
       return 0;
    }
 
+   printf("address of match char: %p\n", temp);
+   printf("address of given line: %p\n", pcLine);
+   printf("address of start_match: %p\n", start_match);
    while(temp != start_match) {   /* no matches when it returns the same input */
       /*printf("value of match char: %c\n", *temp);*/
       printf("scanning\n");
