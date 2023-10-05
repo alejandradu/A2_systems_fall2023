@@ -44,11 +44,11 @@ static size_t replaceAndWrite(const char *pcLine,
    while (head!=tail) {   /* there is still a new match*/
       count++;
       while (head!=tail) {  /* does not get to first match char - good */
-         fprintf("%c", *head);
+         printf("%c", *head);
          head++;
       }
       
-      fprintf("%s", pcTo);
+      printf("%s", pcTo);
 
       head = head + FromLen;   /* move forward to keep on searching and ignore pcFrom */
       tail = Str_search(head, pcFrom);    /* match begins at tail */
