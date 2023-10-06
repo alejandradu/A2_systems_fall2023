@@ -20,8 +20,8 @@
 static size_t replaceAndWrite(const char *pcLine,
                               const char *pcFrom, const char *pcTo)
 {
-   size_t FromLen, count = 0;             /* could count many repetitions */
-   const char *head, *end_string, *tail;   /* pointers to a pointer */
+   size_t FromLen, count = 0;          
+   const char *head, *end_string, *tail;   
 
    assert(pcLine != NULL);
    assert(pcFrom != NULL);
@@ -29,12 +29,12 @@ static size_t replaceAndWrite(const char *pcLine,
 
    FromLen = Str_getLength(pcFrom);
 
-   head = pcLine;       /* assign at the beginnind of string */  
+   head = pcLine;                      /* assign at the beginning of string */  
    end_string = head + (int) Str_getLength(pcLine);
 
-   tail = Str_search(head, pcFrom);    /* match begins at tail */
+   tail = Str_search(head, pcFrom);      /* match begins at tail */
 
-   if(tail == NULL) {      /* pcFrom is NULL or no matches*/
+   if(tail == NULL) {                    /* pcFrom is NULL or no matches*/
       printf(pcLine);
       return 0;
    }
@@ -94,8 +94,8 @@ int main(int argc, char *argv[])
    pcTo = argv[2];
 
    while (fgets(acLine, MAX_LINE_SIZE, stdin) != NULL) {
-      if(*pcFrom == '\0') {    /* if pcFrom is empty */
-         printf(acLine);    /* need newline?? ELSE so it continues to print and return */ 
+      if(*pcFrom == '\0') {                                       /* if pcFrom is empty */
+         printf(acLine);   
       } else {
          uReplaceCount += replaceAndWrite(acLine, pcFrom, pcTo);  /* this is just one l9ne*/
       }

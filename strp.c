@@ -5,7 +5,7 @@
 
 size_t Str_getLength(const char *src)
 {
-   const char *end;   /* what is const in here? in the end i do ++*/
+   const char *end;  
    assert(src != NULL);
    end = src;
    while (*end != '\0')
@@ -85,7 +85,15 @@ int Str_compare(const char *s1, const char *s2)
       }
 }
 
-static int Str_scan_match(const char *curr_haystack, const char *needle, size_t dummy) {
+ /*  Helper function                                                                                                                                                                                                                                                                               
+ *   Determine if all chars of the needle match to the haystack starting at a given index
+ *                                                                                                                                                                     
+ *   haystack: null-terminated char array, at least as big as needle     
+ *   needle: null-terminated char array   
+ *   start: given index to start matching at haystack[start]                                                                                                                    
+ *                                                                                                                                                                                        
+ *   returns: (int) 0 if all needle chars match, 1 otherwise */
+static int Str_scan_match(const char *curr_haystack, const char *needle) {
    
    const char *curr_needle;
    const char *curr_temp_haystack;
@@ -123,7 +131,7 @@ char * Str_search(const char *haystack, const char *needle)
    else {
       while(*curr != '\0') {
          if(*curr == *needle) {    
-            match = Str_scan_match(curr, needle, dummy);    /* scan for needle match starting at i */
+            match = Str_scan_match(curr, needle);    /* scan for needle match starting at i */
             if(match == 1) {
                return (char*) curr;      /* cast */
             }
