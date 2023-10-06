@@ -39,9 +39,9 @@ static size_t replaceAndWrite(const char *pcLine,
       return 0;
    }
 
-   while (head!=tail && tail != NULL) {   /* there is still a new match*/
+   while (tail != NULL) {                 /* while there is still a match */
       count++;
-      while (head!=tail) {  /* does not get to first match char - good */
+      while (head!=tail) {                /* does not get to first match char - good */
          putchar(*head);
          head++;
       }
