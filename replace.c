@@ -36,15 +36,14 @@ static size_t replaceAndWrite(const char *pcLine,
    tail = Str_search(head, pcFrom);    /* match begins at tail */
 
    if(tail == NULL) {    /* pcFrom is NULL or no matches*/
-      printf("%s", pcLine);
+      printf(pcLine);
       return 0;
    }
 
    while (head!=tail && tail != NULL) {   /* there is still a new match*/
       count++;
       while (head!=tail) {  /* does not get to first match char - good */
-         printf("here");
-         printf(head);
+         putchar(*head);
          head++;
       }
       
