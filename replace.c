@@ -29,30 +29,30 @@ static size_t replaceAndWrite(const char *pcLine,
 
    FromLen = Str_getLength(pcFrom);
 
-   head = pcLine;                      /* assign at the beginning of string */  
+   head = pcLine;      /* start of text yet to be matched */     
    end_string = head + (int) Str_getLength(pcLine);
 
-   tail = Str_search(head, pcFrom);      /* match begins at tail */
+   tail = Str_search(head, pcFrom);  /* match begins at tail */
 
-   if(tail == NULL) {                    /* pcFrom is NULL or no matches*/
+   if(tail == NULL) {                /* pcFrom is NULL or no matches*/
       printf(pcLine);
       return 0;
    }
 
-   while (tail != NULL) {                 /* while there is still a match */
+   while (tail != NULL) {            /* while there is still a match */
       count++;
-      while (head!=tail) {                /* does not get to first match char - good */
+      while (head!=tail) {           /* print chars before match */  
          putchar(*head);
          head++;
       }
       
-      printf(pcTo);
+      printf(pcTo);                  /* print pcTo at match place*/
 
-      head = head + FromLen;              /* move forward to keep on searching and ignore pcFrom */
+      head = head + FromLen;              /* update head after match */
       tail = Str_search(head, pcFrom);    /* match begins at tail */
    }
 
-   while(head!=end_string) {             /* print the rest of string with no matches */
+   while(head!=end_string) {        /* print last unmatched stretch */
       putchar(*head);
       head++;
    }
@@ -94,10 +94,10 @@ int main(int argc, char *argv[])
    pcTo = argv[2];
 
    while (fgets(acLine, MAX_LINE_SIZE, stdin) != NULL) {
-      if(*pcFrom == '\0') {                                       /* if pcFrom is empty */
+      if(*pcFrom == '\0') {          /* if pcFrom is empty */
          printf(acLine);   
       } else {
-         uReplaceCount += replaceAndWrite(acLine, pcFrom, pcTo);  /* this is just one l9ne*/
+         uReplaceCount += replaceAndWrite(acLine, pcFrom, pcTo); 
       }
    }
 

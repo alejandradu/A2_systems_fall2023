@@ -27,7 +27,8 @@ char * Str_copy(char out[], const char src[]);
  *   char sequence in out. Adds src immediately after.
  *                                                                                                                                                                     
  *   src: null-terminated char array     
- *   out: null-terminated char array with enough empty elements to fit src                                                                                                                          
+ *   out: null-terminated char array with enough empty elements to fit 
+ *   src                                                                                                                          
  *                                                                                                                                                                                        
  *   returns: array (pointer to the first element) with concatenation */
 char * Str_concat(char out[], const char src[]);

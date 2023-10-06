@@ -1,4 +1,7 @@
-/* Use arrays to create string handling functions*/
+/*--------------------------------------------------------------------*/
+/* stra.c                                                             */
+/* Author: Alejandra Duran Urriago                                    */
+/*--------------------------------------------------------------------*/
 
 #include <stdio.h>
 #include <stddef.h>
@@ -20,11 +23,11 @@ char * Str_copy(char out[], const char src[])
    assert(src != NULL); 
    assert(out != NULL);
 
-   while(src[i] != '\0') {      /* copy all chars up until first null*/
+   while(src[i] != '\0') {    /* copy all chars up until first null*/
       out[i] = src[i];
       i++;
    }
-   out[i]= '\0';                /* add final null, leave the rest unchanged*/
+   out[i]= '\0';          /* add final null, leave the rest unchanged*/
    return out;
 
 }
@@ -56,7 +59,8 @@ int Str_compare(const char s1[], const char s2[])
    assert(s2 != NULL);
 
    while((c1 = s1[i]) == (c2 = s2[i])) {  
-      if(i == Str_getLength(s1) || i == Str_getLength(s2)) {    /* all chars are equal */
+      /* if all chars are equal */
+      if(i == Str_getLength(s1) || i == Str_getLength(s2)) {  
          return 0;
       } 
       i++;
@@ -65,7 +69,7 @@ int Str_compare(const char s1[], const char s2[])
          return -1;
       } else if(c2 == '\0') {     /* s1 is longer*/
          return 1;
-      } else {                    /* the not-NULL chars are different  */
+      } else {                /* the not-NULL chars are different */
          if(c1 > c2) {
             return 1;
          } else {
@@ -75,14 +79,16 @@ int Str_compare(const char s1[], const char s2[])
 }
 
  /*  Helper function                                                                                                                                                                                                                                                                               
- *   Determine if all chars of the needle match to the haystack starting at a given index
+ *   Determine if all chars of the needle match to the haystack 
+ *   starting at a given index
  *                                                                                                                                                                     
  *   haystack: null-terminated char array, at least as big as needle     
  *   needle: null-terminated char array   
  *   start: given index to start matching at haystack[start]                                                                                                                    
  *                                                                                                                                                                                        
  *   returns: (int) 0 if all needle chars match, 1 otherwise */
-static int Str_scan_match(const char haystack[], const char needle[], size_t start) {
+static int Str_scan_match(const char haystack[], const char needle[], 
+                          size_t start) {
    size_t k = 0;
    assert(haystack != NULL);
    assert(needle != NULL);
@@ -113,13 +119,14 @@ char * Str_search(const char haystack[], const char needle[])
    else {
       while(haystack[i] != '\0') {
          if(haystack[i] == needle[0]) {    
-            match = Str_scan_match(haystack, needle, i);    /* scan for needle match starting at i */
+            /* scan for needle match starting at i */
+            match = Str_scan_match(haystack, needle, i);  
             if(match == 1) {
                return (char*) &haystack[i];  /* cast */
             }
          }
          i++;   
-      }                                      /* if no successful match*/
-      return NULL;
+      }                
+      return NULL;      /* if no successful match*/
    } 
 }

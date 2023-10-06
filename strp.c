@@ -1,3 +1,8 @@
+/*--------------------------------------------------------------------*/
+/* strp.c                                                             */
+/* Author: Alejandra Duran Urriago                                    */
+/*--------------------------------------------------------------------*/
+
 #include <stdio.h>
 #include <stddef.h>
 #include <assert.h>  
@@ -27,7 +32,7 @@ char * Str_copy(char *out, const char *src)
    }
    *out = '\0';                    /* add final null */
  
-   return out - (curr - src);      /* curr - src is what out has moved */
+   return out - (curr - src);   /* curr - src is what out has moved */
 
 }
 
@@ -49,7 +54,7 @@ char * Str_concat(char *out, const char *src)
    }
    *out = '\0';                /* add final null */
 
-   return out - (int) LenOut - (curr - src);   /* back to start of out */
+   return out - (int) LenOut - (curr - src); /* back to start of out */
 
 }
 
@@ -76,7 +81,7 @@ int Str_compare(const char *s1, const char *s2)
          return -1;
       } else if(*c2 == '\0') {     /* s1 is longer*/
          return 1;
-      } else {                     /* the not-NULL chars are different  */
+      } else {                  /* the not-NULL chars are different  */
          if(*c1 > *c2) {
             return 1;
          } else {
@@ -86,15 +91,17 @@ int Str_compare(const char *s1, const char *s2)
 }
 
  /*  Helper function                                                                                                                                                                                                                                                                               
- *   Determine if all chars of the needle match to the haystack starting at a given index
+ *   Determine if all chars of the needle match to the haystack 
+ *   starting at a given index
  *                                                                                                                                                                     
  *   haystack: null-terminated char array, at least as big as needle     
  *   needle: null-terminated char array   
  *   start: given index to start matching at haystack[start]                                                                                                                    
  *                                                                                                                                                                                        
  *   returns: (int) 0 if all needle chars match, 1 otherwise */
-static int Str_scan_match(const char *curr_haystack, const char *needle) {
-   
+static int Str_scan_match(const char *curr_haystack, 
+                          const char *needle) 
+{   
    const char *curr_needle;
    const char *curr_temp_haystack;
    assert(curr_haystack != NULL);
@@ -131,13 +138,14 @@ char * Str_search(const char *haystack, const char *needle)
    else {
       while(*curr != '\0') {
          if(*curr == *needle) {    
-            match = Str_scan_match(curr, needle);    /* scan for needle match starting at i */
+            /* scan for needle match starting at i */
+            match = Str_scan_match(curr, needle);   
             if(match == 1) {
                return (char*) curr;      /* cast */
             }
          }
          curr++;   
-      }                                   /* if no successful match*/
-      return NULL;
+      }                                
+      return NULL;     /* if no successful match*/
    } 
 }
