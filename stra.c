@@ -92,7 +92,6 @@ static int Str_scan_match(const char haystack[], const char needle[],
    size_t k = 0;
    assert(haystack != NULL);
    assert(needle != NULL);
-   assert(start != NULL);
 
    while(needle[k] != '\0') {
       if(haystack[start + k] != needle[k]) { 
