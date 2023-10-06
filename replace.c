@@ -59,6 +59,11 @@ static size_t replaceAndWrite(const char *pcLine,
 
    }
 
+   while(head!=end_string) {
+      putchar(*head);
+      head++;
+   }
+
    return count;
 
 }
