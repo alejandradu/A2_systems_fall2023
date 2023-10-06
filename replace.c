@@ -21,18 +21,17 @@ static size_t replaceAndWrite(const char *pcLine,
                               const char *pcFrom, const char *pcTo)
 {
    size_t FromLen, ToLen, count = 0;             /* could count many repetitions */
-   const char *head;   /* pointers to a pointer */
+   const char *head, *end_string;   /* pointers to a pointer */
    char *tail;
-   int i = 0;
 
    assert(pcLine != NULL);
    assert(pcFrom != NULL);
    assert(pcTo != NULL);
 
    FromLen = Str_getLength(pcFrom);
-   ToLen = Str_getLength(pcTo);
 
    head = pcLine;       /* assign at the beginnind of string */  
+   end_string = head + (int) Str_getLength(pcLine);
 
    tail = Str_search(head, pcFrom);    /* match begins at tail */
 
@@ -41,17 +40,24 @@ static size_t replaceAndWrite(const char *pcLine,
       return 0;
    }
 
-   while (head!=tail) {   /* there is still a new match*/
+   while (head!=tail && tail != NULL) {   /* there is still a new match*/
       count++;
       while (head!=tail) {  /* does not get to first match char - good */
-         printf("%c", *head);
+         printf("here");
+         printf(head);
          head++;
       }
       
       printf("%s", pcTo);
+      
+      /*if (head + FromLen <= end_string) {
+         head = head + FromLen;   /* move forward to keep on searching and ignore pcFrom
+         tail = Str_search(head, pcFrom);    match begins at tail 
+      }*/
 
       head = head + FromLen;   /* move forward to keep on searching and ignore pcFrom */
       tail = Str_search(head, pcFrom);    /* match begins at tail */
+
    }
 
    return count;
@@ -94,7 +100,7 @@ int main(int argc, char *argv[])
       if(*pcFrom == '\0') {    /* if pcFrom is empty */
          printf(acLine);    /* need newline?? ELSE so it continues to print and return */ 
       } else {
-         uReplaceCount = replaceAndWrite(acLine, pcFrom, pcTo);
+         uReplaceCount += replaceAndWrite(acLine, pcFrom, pcTo);  /* this is just one l9ne*/
       }
    }
 
