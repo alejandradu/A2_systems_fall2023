@@ -125,7 +125,6 @@ static int Str_scan_match(const char *curr_haystack,
 
 char * Str_search(const char *haystack, const char *needle)
 {  
-   size_t dummy;
    int match;
    const char *curr;
    assert(haystack != NULL);
