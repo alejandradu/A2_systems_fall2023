@@ -20,9 +20,8 @@
 static size_t replaceAndWrite(const char *pcLine,
                               const char *pcFrom, const char *pcTo)
 {
-   size_t FromLen, ToLen, count = 0;             /* could count many repetitions */
-   const char *head, *end_string;   /* pointers to a pointer */
-   char *tail;
+   size_t FromLen, count = 0;             /* could count many repetitions */
+   const char *head, *end_string, *tail;   /* pointers to a pointer */
 
    assert(pcLine != NULL);
    assert(pcFrom != NULL);
@@ -35,7 +34,7 @@ static size_t replaceAndWrite(const char *pcLine,
 
    tail = Str_search(head, pcFrom);    /* match begins at tail */
 
-   if(tail == NULL) {    /* pcFrom is NULL or no matches*/
+   if(tail == NULL) {      /* pcFrom is NULL or no matches*/
       printf(pcLine);
       return 0;
    }
@@ -47,19 +46,13 @@ static size_t replaceAndWrite(const char *pcLine,
          head++;
       }
       
-      printf("%s", pcTo);
-      
-      /*if (head + FromLen <= end_string) {
-         head = head + FromLen;   /* move forward to keep on searching and ignore pcFrom
-         tail = Str_search(head, pcFrom);    match begins at tail 
-      }*/
+      printf(pcTo);
 
-      head = head + FromLen;   /* move forward to keep on searching and ignore pcFrom */
+      head = head + FromLen;              /* move forward to keep on searching and ignore pcFrom */
       tail = Str_search(head, pcFrom);    /* match begins at tail */
-
    }
 
-   while(head!=end_string) {
+   while(head!=end_string) {             /* print the rest of string with no matches */
       putchar(*head);
       head++;
    }

@@ -58,7 +58,7 @@ static int Str_scan_match(const char haystack[], const char needle[], size_t sta
  *   haystack: null-terminated char array, at least as big as needle     
  *   needle: null-terminated char array                                                                                                              
  *                                                                                                                                                                                        
- *   returns: NULL if needle is empty, haystack if no matches, or
+ *   returns: NULL if needle is empty or if no matches, or
  *            pointer to the first element in haystack of match found */
 char * Str_search(const char haystack[], const char needle[]);
 
